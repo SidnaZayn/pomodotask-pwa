@@ -1,6 +1,7 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import PWABadge from './components/PWABadge.vue'
+import Timer from './components/Timer/Main.vue'
 </script>
 
 <template>
@@ -11,8 +12,11 @@ import PWABadge from './components/PWABadge.vue'
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
+    <h1>pomodotask</h1>
+    <h3>pomodoro + task app</h3>
   </div>
-  <HelloWorld msg="pomodotask" />
+  <Timer />
+  <HelloWorld />
   <PWABadge />
 </template>
 
