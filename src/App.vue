@@ -1,23 +1,39 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import PWABadge from './components/PWABadge.vue'
-import Timer from './components/Timer/Main.vue'
+import HelloWorld from "./components/HelloWorld.vue";
+import PWABadge from "./components/PWABadge.vue";
+import DarkMode from "./components/DarkMode.vue";
+import SettingCard from "./components/SettingCard.vue";
+import Timer from "./components/Timer/Main.vue";
+import { ref } from "vue";
+import { useTheme } from "vuetify";
+
+const theme = useTheme();
+
+const currentTheme = ref(theme.global.current.value);
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/favicon.svg" class="logo" alt="pomodotask logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-    <h1>pomodotask</h1>
-    <h3>pomodoro + task app</h3>
-  </div>
-  <Timer />
-  <HelloWorld />
-  <PWABadge />
+  <v-responsive class="border rounded" >
+    <v-app :theme="currentTheme">
+      <v-container>
+        <a href="https://vite.dev" target="_blank">
+          <img src="/favicon.svg" class="logo" alt="pomodotask logo" />
+        </a>
+        <a href="https://vuejs.org/" target="_blank">
+          <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+        </a>
+        <h1>pomodotask</h1>
+        <h3>pomodoro + task app</h3>
+      </v-container>
+      <Timer />
+      <v-container>
+        <DarkMode />
+        <SettingCard />
+      </v-container>
+      <HelloWorld />
+      <PWABadge />
+    </v-app>
+  </v-responsive>
 </template>
 
 <style scoped>

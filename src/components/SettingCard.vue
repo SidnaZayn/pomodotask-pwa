@@ -1,11 +1,11 @@
 <template>
-  <v-btn color="success" @click="overlay = !overlay">Setting</v-btn>
+  <v-btn variant="text" icon="mdi-cog-outline" @click="overlay = !overlay"></v-btn>
 
   <v-overlay :model-value="overlay" class="align-center justify-center">
-    <v-card max-width="400" class="mx-auto">
+    <v-card max-width="400" class="mx-auto w-75">
       <v-card-title>Settings</v-card-title>
       <v-card-text>
-        <p>focus time</p>
+        <p class="text-center text-sm-left mb-3">focus time</p>
         <v-row>
           <v-col cols="12" sm="6">
             <v-text-field
@@ -26,7 +26,7 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <p>break time</p>
+        <p class="text-center text-sm-left mb-3">break time</p>
         <v-row>
           <v-col cols="12" sm="6">
             <v-text-field
@@ -60,7 +60,7 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import { useTimerStore } from "../../stores/TimerStore";
+import { useTimerStore } from "../stores/TimerStore";
 
 const timerStore = useTimerStore();
 const overlay = ref(false);

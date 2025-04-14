@@ -4,10 +4,16 @@
       <v-card-title>Timer</v-card-title>
       <v-card-subtitle>
         <div class="d-flex justify-center ga-3">
-          <v-btn variant="tonal" :disabled="timerStore.focusTime" @click="toFocusTime"
+          <v-btn
+            variant="tonal"
+            :disabled="timerStore.focusTime"
+            @click="toFocusTime"
             >Focus Time</v-btn
           >
-          <v-btn variant="tonal" :disabled="timerStore.breakTime" @click="toBreakTime"
+          <v-btn
+            variant="tonal"
+            :disabled="timerStore.breakTime"
+            @click="toBreakTime"
             >Break Time</v-btn
           >
         </div>
@@ -16,14 +22,19 @@
         <h1>{{ formattedTime }}</h1>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
-        <v-btn color="primary" @click="startTimer" :disabled="timerStore.isRunning"
+        <v-btn
+          color="primary"
+          @click="startTimer"
+          :disabled="timerStore.isRunning"
           >Start</v-btn
         >
-        <v-btn color="error" @click="stopTimer" :disabled="!timerStore.isRunning"
+        <v-btn
+          color="error"
+          @click="stopTimer"
+          :disabled="!timerStore.isRunning"
           >Stop</v-btn
         >
         <v-btn color="secondary" @click="resetTimer">Reset</v-btn>
-        <SettingCardButton />
       </v-card-actions>
     </v-card>
   </v-container>
@@ -31,7 +42,6 @@
 
 <script setup>
 import { ref, computed, onBeforeUnmount } from "vue";
-import SettingCardButton from "./SettingCard.vue";
 import { useTimerStore } from "../../stores/TimerStore.js";
 
 const timerStore = useTimerStore();
@@ -70,7 +80,9 @@ const stopTimer = () => {
 
 const resetTimer = () => {
   stopTimer();
-  timerStore.time = timerStore.timeFocusBase; // Reset to 25 minutes
+  timerStore.time = timerStore.focusTime
+    ? timerStore.timeFocusBase
+    : timerStore.timeBreakBase; // Reset to 25 minutes
 };
 
 const toBreakTime = () => {
