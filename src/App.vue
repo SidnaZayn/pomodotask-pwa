@@ -18,7 +18,6 @@ const currentTheme = computed(() => {
 <template>
   <v-responsive class="border rounded">
     <v-app :theme="currentTheme">
-      {{ currentTheme }}
       <v-container>
         <a href="https://vite.dev" target="_blank">
           <img src="/favicon.svg" class="logo" alt="pomodotask logo" />
