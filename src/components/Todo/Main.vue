@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from "vue";
-import { useTodoStore } from "../..//stores/todoStore";
+import { useTodoStore } from "../../stores/todoStore";
 
 const todoStore = useTodoStore();
 const todos = computed(() => todoStore.todos);
