@@ -4,17 +4,21 @@ import PWABadge from "./components/PWABadge.vue";
 import DarkMode from "./components/DarkMode.vue";
 import SettingCard from "./components/SettingCard.vue";
 import Timer from "./components/Timer/Main.vue";
-import { ref } from "vue";
+import Todo from "./components/Todo/Main.vue";
+import { computed, ref } from "vue";
 import { useTheme } from "vuetify";
 
 const theme = useTheme();
 
-const currentTheme = ref(theme.global.current.value);
+const currentTheme = computed(() => {
+  return theme.global.current.value.dark ? "light" : "dark";
+});
 </script>
 
 <template>
-  <v-responsive class="border rounded" >
+  <v-responsive class="border rounded">
     <v-app :theme="currentTheme">
+      {{ currentTheme }}
       <v-container>
         <a href="https://vite.dev" target="_blank">
           <img src="/favicon.svg" class="logo" alt="pomodotask logo" />
@@ -25,10 +29,13 @@ const currentTheme = ref(theme.global.current.value);
         <h1>pomodotask</h1>
         <h3>pomodoro + task app</h3>
       </v-container>
-      <Timer />
-      <v-container>
+      <div class="d-flex justify-center">
         <DarkMode />
         <SettingCard />
+      </div>
+      <Timer />
+      <v-container>
+        <Todo />
       </v-container>
       <HelloWorld />
       <PWABadge />
