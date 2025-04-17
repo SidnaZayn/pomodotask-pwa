@@ -19,7 +19,10 @@
         </div>
       </v-card-subtitle>
       <v-card-text>
-        <h1>{{ formattedTime }}</h1>
+        <div class="d-flex justify-center align-center ga-2 ml-4">
+          <h1>{{ formattedTime }}</h1>
+          <Alert class="mt-2" @dismissAlert="dismissAlert" />
+        </div>
       </v-card-text>
       <v-card-actions class="d-flex justify-center">
         <v-btn
@@ -43,6 +46,7 @@
 <script setup>
 import { ref, computed, onBeforeUnmount } from "vue";
 import { useTimerStore } from "../../stores/TimerStore.js";
+import Alert from "./Alert.vue";
 
 const timerStore = useTimerStore();
 const timer = ref(null);
@@ -53,19 +57,38 @@ const formattedTime = computed(() => {
   return `${minutes}:${seconds}`;
 });
 
+const audio = new Audio(
+  "https://cdn.pixabay.com/audio/2025/04/14/audio_910d824456.mp3"
+);
+
+const dismissAlert = () => {
+  audio.pause();
+  audio.currentTime = 0; // Reset audio to start
+  timerStore.timeUp = false;
+};
+
 const startTimer = () => {
   if (!timerStore.isRunning) {
     timerStore.isRunning = true;
+    timerStore.timeUp = false;
     timer.value = setInterval(() => {
       if (timerStore.time <= 0) {
         clearInterval(timer.value);
         timerStore.isRunning = false;
+        timerStore.timeUp = true;
         if (timerStore.focusTime) {
           toBreakTime(); // Switch to break time
         } else {
           toFocusTime(); // Switch to focus time
         }
-        alert("Time's up!");
+        if (!timerStore.silentMode) {
+          audio.loop = true;
+          audio.play();
+        }
+        setTimeout(() => {
+          alert("Time's up!");
+          dismissAlert();
+        }, 1000);
       } else {
         timerStore.time--;
       }

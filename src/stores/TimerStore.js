@@ -7,6 +7,8 @@ export const useTimerStore = defineStore("timer", () => {
   const time = ref(timeFocusBase.value); // Current time in seconds
   const isRunning = ref(false); // Timer running state
   let timerInterval = null;
+  const timeUp = ref(false);
+  const silentMode = ref(false);
 
   const focusTime = ref(true);
   const breakTime = ref(false);
@@ -46,6 +48,8 @@ export const useTimerStore = defineStore("timer", () => {
     timeFocusBase,
     focusTime,
     breakTime,
+    timeUp,
+    silentMode,
     startTimer,
     stopTimer,
     resetTimer,

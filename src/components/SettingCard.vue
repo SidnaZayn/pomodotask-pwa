@@ -1,5 +1,9 @@
 <template>
-  <v-btn variant="text" icon="mdi-cog-outline" @click="overlay = !overlay"></v-btn>
+  <v-btn
+    variant="text"
+    icon="mdi-cog-outline"
+    @click="overlay = !overlay"
+  ></v-btn>
 
   <v-overlay :model-value="overlay" class="align-center justify-center">
     <v-card max-width="400" class="mx-auto w-75">
