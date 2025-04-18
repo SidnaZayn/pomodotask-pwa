@@ -38,12 +38,13 @@ const checkboxStatus = computed(() => {
 <template>
   <v-card class="todo-list">
     <v-card-title>Todo List</v-card-title>
-    <v-card-text>
-      <v-list class="w-full mx-auto">
+    <v-card-text v-if="todos.length > 0">
+      <v-list class="w-full mx-auto p-2">
         <v-list-item
           v-for="(todo, i) in todos"
           :key="todo.id"
-          :class="{'bg-secondary': todo.completed}"
+          :class="[todo.completed?'bg-secondary': 'bg-gray-200']"
+          class="rounded mb-2"
         >
           <template #prepend>
             <v-checkbox
@@ -65,7 +66,7 @@ const checkboxStatus = computed(() => {
       </v-list>
     </v-card-text>
     <v-card-actions class="d-flex justify-center">
-      <v-btn color="primary" @click="addTodo">Add Todo</v-btn>
+      <v-btn color="primary" @click="addTodo" variant="outlined" icon="mdi-plus"></v-btn>
     </v-card-actions>
   </v-card>
 </template>
