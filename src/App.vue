@@ -19,11 +19,8 @@ const currentTheme = computed(() => {
   <v-responsive class="border rounded">
     <v-app :theme="currentTheme">
       <v-container>
-        <a href="https://vite.dev" target="_blank">
+        <a href="#">
           <img src="/favicon.svg" class="logo" alt="pomodotask logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-          <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
         </a>
         <h1>pomodotask</h1>
         <h3>pomodoro + task app</h3>
@@ -36,7 +33,6 @@ const currentTheme = computed(() => {
       <v-container>
         <Todo />
       </v-container>
-      <HelloWorld />
       <PWABadge />
     </v-app>
   </v-responsive>
